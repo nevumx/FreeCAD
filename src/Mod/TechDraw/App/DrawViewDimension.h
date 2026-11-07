@@ -99,6 +99,9 @@ public:
     App::PropertyBool UseActualArea;
 
     App::PropertyBool ShowUnits;
+
+    static const int UNIT_OVERRIDE_NONE = 0;
+    App::PropertyEnumeration UnitSystemOverride;
 //NOLINTEND
 
     enum class RefType
@@ -200,6 +203,8 @@ public:
     void saveArrowPositions(const Base::Vector2d positions[]);  //NOLINT
 
     bool showUnits() const;
+    long getUnitSystemOverride() const;
+    const char* getUnitSystemOverrideName() const;
     bool useDecimals() const;
     bool isExtentDim() const;
     virtual ReferenceVector getEffectiveReferences() const;

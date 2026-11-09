@@ -236,7 +236,9 @@ DrawViewDimension::DrawViewDimension()
     ADD_PROPERTY_TYPE(UnitSystemOverride, (UNIT_OVERRIDE_NONE), "Format", App::Prop_None,
                                           "Unit system to use for this dimension instead of the global setting");
     std::vector<std::string> unitSystemNames { "None" };
-    unitSystemNames.append_range(Base::UnitsApi::getNames());
+    std::ranges::for_each(Base::UnitsApi::getNames(), [&](const auto& name) {
+        unitSystemNames.push_back(name);
+    });
     UnitSystemOverride.setEnums(unitSystemNames);
     measurement = new Measure::Measurement();
     // TODO: should have better initial datumLabel position than (0, 0) in the DVP?? something
